@@ -12,7 +12,7 @@ use App\Http\Controllers\LocalizationController;
  
 //     App::setLocale('bn');
 
-//     return view('welcome');
+    // return view('welcome');
 // });
 
 Auth::routes();
@@ -21,7 +21,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('google-autocomplete', [GoogleController::class, 'index']);
 
-Route::get('change/lang', [LocalizationController::class, 'lang_change'])->name('LangChange');
+Route::get('/', [LocalizationController::class, 'lang_change'])->name('LangChange');
 Route::post('add-language', [LocalizationController::class, 'language_add'])->name('language_add');
 Route::post('languages_key_value_store', [LocalizationController::class, 'languages_key_value_store'])->name('languages_key_value_store');
 Route::post('languages_store', [LocalizationController::class, 'languages_store'])->name('languages_store');

@@ -11,12 +11,14 @@ class LocalizationController extends Controller
 {
     public function lang_change(Request $request)
     {
-        Cache::forget('translations-'.$request->lang);
-        App::setLocale($request->lang);
-        
+        App::setLocale('en');
+        if($request->lang){
+            App::setLocale($request->lang);
+            session()->put('locale', $request->lang);
+        }  
         $language1 = Language::where('code', app()->getLocale())->first();
         $lang_keys = Translate::where('lang', 'en')->paginate(20);
-        session()->put('locale', $request->lang);  
+     
         return view('welcome',compact('language1','lang_keys'));
         
     }
