@@ -123,6 +123,9 @@
                             <div class="col-lg-9">
                                 @php
                                     $languagesArray = \App\Models\Language::pluck('code')->toarray();
+                                    foreach (\File::files(base_path('public/flags')) as $path) {
+                                        // dd();
+                                    }
                                 @endphp
                                 <select class="form-control aiz-selectpicker mb-2 mb-md-0" name="code"
                                     data-live-search="true">
@@ -172,6 +175,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
+    <script></script>
     <script type="text/javascript">
         function initMap() {
             const myLatLng = {

@@ -17,11 +17,11 @@ function translate($key, $lang = null, $addslashes = false)
         return Translate::where('lang', 'en')->pluck('lang_value', 'lang_key')->toArray();
     });
     if (!isset($translations_en[$lang_key])) {
-        $translation_def = new Translate;
-        $translation_def->lang = 'en';
-        $translation_def->lang_key = $lang_key;
-        $translation_def->lang_value = str_replace(array("\r", "\n", "\r\n"), "", $key);
-        $translation_def->save();
+        $translate_default = new Translate;
+        $translate_default->lang = 'en';
+        $translate_default->lang_key = $lang_key;
+        $translate_default->lang_value = str_replace(array("\r", "\n", "\r\n"), "", $key);
+        $translate_default->save();
         Cache::forget('translations-en');
     }
     
@@ -33,9 +33,7 @@ function translate($key, $lang = null, $addslashes = false)
         return 
        $addslashes ? addslashes(trim($translation_locale[$lang_key])) : trim($translation_locale[$lang_key]);
     }
-    
     else{
-        
         return  $addslashes ? addslashes(trim($translations_en[$lang_key])) : trim($translations_en[$lang_key]);
     }
 
